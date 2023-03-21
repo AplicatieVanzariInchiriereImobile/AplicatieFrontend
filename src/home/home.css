@@ -1,0 +1,165 @@
+.home-header{
+    color:red;
+}
+
+.imaginePrincipala{
+    width: 100%;
+    height: 40vmax;
+    padding-top: 10%;
+    padding-left: 30%;
+    padding-bottom: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-image: url(../commons/images/pozaHome.avif);
+    opacity: 0.9;
+    border-width: 0 1vmax 1vmax 1vmax;
+    border-style: solid;
+    border-color: #262121;
+}
+
+.textImagine{
+    height: 40%;
+    width: fit-content;
+
+    font-family: 'Karla', serif;
+    font-style: normal;
+    /*font-weight: 400;*/
+    font-size: 5.2vmax;
+    line-height: 112px;
+
+    color: #000000;
+}
+
+.textRegister{
+    width: 13vmax;
+    height: 47px;
+    display: inline-block;
+
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2vmax;
+    line-height: 47px;
+
+    color: #000000;
+}
+
+.divRegister{
+    margin-left: 30vmax;
+    margin-top: 13vmax;
+}
+
+.divInformatii
+{
+    height: 30vmax;
+    width: 100%;
+    background: #D9D9D9;
+    border-width: 0 1vmax 1vmax 1vmax;
+    border-style: solid;
+    border-color: #262121;
+    opacity: 0.9;
+}
+
+.textInformatii{
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-size: 3vmax;
+    color: #000000;
+}
+
+.lineInformatii{
+    width: 24vmax;
+    margin-left: 36%;
+    margin-top: 12vmax;
+    border: 0.4vmax solid #22B0DD;
+    transform: rotate(90deg);
+
+}
+
+.textInfoStanga{
+    width: 30%;
+    height: 10vmax;
+    margin-left: -17vmax;
+    margin-top: -5vmax;
+    text-align: justify;
+
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-size: 2vmax;
+    display: inline-block;
+
+    color: #000000;
+}
+
+.textInfoDreapta{
+    width: 30%;
+    height: 10vmax;
+    margin-right: 10%;
+    margin-top: -5vmax;
+    text-align: justify;
+
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-size: 2vmax;
+
+    display: inline-block;
+    float: right;
+
+    color: #000000;
+}
+
+.divPrezentare
+{
+    height: 30vmax;
+    background: #D9D9D9;
+    border-width: 0 1vmax 1vmax 1vmax;
+    border-style: solid;
+    border-color: #262121;
+    opacity: 0.9;
+}
+
+.videoPrezentare
+{
+    height: 29.1vmax;
+    width: 48.8%;
+    float: left;
+    border-width: 0 1vmax 0 0;
+    border-style: solid;
+    border-color: #262121;
+}
+
+.textPrezentare{
+
+    width: 40%;
+    height:70%;
+    display: inline-block;
+    margin-top: 2.3vmax;
+
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-size: 2vmax;
+    text-align: justify;
+
+    color: #000000;
+}
+
+.divContact{
+    /* contact */
+
+    height: 30vmax;
+
+    background: rgba(196, 164, 135, 0.7);
+    border-width: 0 15px 15px 15px;
+    border-style: solid;
+    border-color: rgba(63, 62, 62, 1);
+
+}
+
+.textContact{
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-size: 3vmax;
+    color: #000000;
+    /*text-align: center;*/
+}
