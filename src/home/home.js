@@ -149,8 +149,10 @@ import React, { useState } from 'react'
 import NavigationBar from "../navigation-bar";
 import './home.css';
 import {Button, Col, Container, Row} from "reactstrap";
-import logo from "../commons/images/building-icon.svg";
 import logoAdresa from '../commons/images/adresa-icon.svg';
+import logoEmail from '../commons/images/email-icon.svg';
+import logoTelefon from '../commons/images/phone-icon.svg';
+
 
 export default function Home() {
     const [ value, setValue]= useState(0);
@@ -206,9 +208,17 @@ export default function Home() {
                         <Col><p className="textContact">Informatii de contact</p></Col>
                     </Row>
                     <Row>
-                        <Col xs="4"> <img src={logoAdresa} width={"80"} height={"50"} />Adresa</Col>
-                        <Col xs="4">.col-6</Col>
-                        <Col xs="4">.col-6</Col>
+                        <Col xs="4"> <img src={logoAdresa} className="logoContact"  alt="logo adresa"/>
+                            <p className="textLogo">Adresa</p></Col>
+                        <Col xs="4"><img src={logoEmail} className="logoContact"  alt="logo adresa"/>
+                            <p className="textLogo">Email</p></Col>
+                        <Col xs="4"><img src={logoTelefon} className="logoContact"  alt="logo adresa"/>
+                            <p className="textLogo">Telefon</p></Col>
+                    </Row>
+                    <Row>
+                        <Col xs="4"><p className="textSubLogo">Strada Avram Iancu nr. 25, Cluj-Napoca, Romania</p></Col>
+                        <Col xs="4"><p className="textSubLogo">sierra.imobiliare@gmail.com</p></Col>
+                        <Col xs="4"><p className="textSubLogo">+40 726 123 456</p></Col>
                     </Row>
                 </Container>
             </div>

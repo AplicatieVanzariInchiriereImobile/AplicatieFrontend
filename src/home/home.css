@@ -4,7 +4,7 @@
 
 .imaginePrincipala{
     width: 100%;
-    height: 40vmax;
+    height: fit-content;
     padding-top: 10%;
     padding-left: 30%;
     padding-bottom: 2%;
@@ -147,10 +147,10 @@
 .divContact{
     /* contact */
 
-    height: 30vmax;
+    height: fit-content;
 
     background: rgba(196, 164, 135, 0.7);
-    border-width: 0 15px 15px 15px;
+    border-width: 0 1vmax 1vmax 1vmax;
     border-style: solid;
     border-color: rgba(63, 62, 62, 1);
 
@@ -162,4 +162,27 @@
     font-size: 3vmax;
     color: #000000;
     /*text-align: center;*/
+}
+
+.logoContact{
+    height: 3vmax;
+    width: 3vmax;
+}
+.textLogo{
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.2vmax;
+    color: #2d2d2d;
+    display: inline-block;
+    padding-left: 2%;
+}
+.textSubLogo{
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.5vmax;
+    color: #2d2d2d;
+    display: inline-block;
+    padding-left: 2%;
 }

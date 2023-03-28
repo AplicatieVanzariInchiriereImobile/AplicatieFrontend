@@ -1,3 +1,142 @@
-.home-header{
-    color:red;
+.imaginePrincipalaNoutati{
+    width: 100%;
+    height: fit-content;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-bottom: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-image: url(../commons/images/pozaNoutati.avif);
+    opacity: 0.9;
+    border-width: 0 1vmax 1vmax 1vmax;
+    border-style: solid;
+    border-color: #262121;
 }
+
+.textImagineNoutati{
+    height: fit-content;
+    width: 75%;
+
+    font-family: 'Karla', serif;
+    font-style: normal;
+    /*font-weight: 400;*/
+    font-size: 3.2vmax;
+    text-align: justify;
+    color: #000000;
+}
+
+.cardNoutati{
+    width: 80vmax !important;
+    height: 17vmax;
+    cursor: pointer;
+    margin-top: 5vmax;
+    background-color: rgba(45,45,45,0.7) !important;
+    border-radius: 1vmax !important;
+}
+.cardBodyNoutati{
+    padding:0 !important;
+}
+
+.imgCard{
+    width:30%;
+    height:100%;
+    display:inline-block;
+    float:left;
+    border-radius: 1vmax 0 0 1vmax !important;
+}
+
+.divTextCard{
+    padding-top: 1%;
+    padding-left: 20%;
+}
+
+.textCard{
+    width:70%;
+    height:fit-content;
+    display:inline-block;
+    color: whitesmoke;
+    text-align: left;
+    font-size: 1.81vmax;
+    margin-bottom: 0.6vmax !important;
+}
+
+.divContactNoutati{
+    /* contact */
+
+    height: fit-content;
+
+    background: rgba(196, 164, 135, 0.7);
+    border-width: 0 1vmax 1vmax 1vmax;
+    border-style: solid;
+    border-color: rgba(63, 62, 62, 1);
+
+}
+
+.textContactNoutati{
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-size: 3vmax;
+    color: #000000;
+    /*text-align: center;*/
+}
+
+.logoContactNoutati{
+    height: 3vmax;
+    width: 3vmax;
+}
+.textLogoNoutati{
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.2vmax;
+    color: #2d2d2d;
+    display: inline-block;
+    padding-left: 2%;
+}
+.textSubLogoNoutati{
+    font-family: 'Karla', serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.5vmax;
+    color: #2d2d2d;
+    display: inline-block;
+    padding-left: 2%;
+}
+
+/*.imgCardDreapta{*/
+/*    width:30%;*/
+/*    height:100%;*/
+/*    display:inline-block;*/
+/*    float:right;*/
+/*    border-radius:0 1vmax 1vmax 0!important;*/
+/*}*/
+
+/*.divTextCardDreapta{*/
+/*}*/
+
+/*.textCardDreapta{*/
+/*    padding-top: 3%;*/
+/*    padding-right: 6%;*/
+/*    width:70%;*/
+/*    height:fit-content;*/
+/*    display:inline-block;*/
+/*    color: whitesmoke;*/
+/*    text-align: right;*/
+/*    font-size: 1.8vmax;*/
+/*    margin-bottom: 0.6vmax !important;*/
+/*    float: left;*/
+/*}*/
+
+/*.ripple {*/
+/*    background-position: center;*/
+/*    transition: background 0.8s;*/
+/*}*/
+/*.ripple:hover {*/
+/*    background: rgba(61, 61, 61, 0.7) radial-gradient(circle, transparent 1%, rgba(70, 69, 69, 0.7) 1%) center/15000%;*/
+/*}*/
+/*.ripple:active {*/
+/*    background-color: rgba(72, 71, 71, 0.7);*/
+/*    background-size: 100%;*/
+/*    transition: background 0s;*/
+/*}*/
