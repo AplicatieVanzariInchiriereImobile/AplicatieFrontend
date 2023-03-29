@@ -1,3 +1,205 @@
-.home-header{
-    color:red;
+.cardInchirieri{
+    width: 50vmax !important;
+    height: 11vmax;
+    cursor: pointer;
+    margin-top: 5vmax;
+    background-color: rgba(45,45,45,0.7) !important;
+    border-radius: 1vmax !important;
+}
+.cardBodyInchirieri{
+    padding:0 !important;
+}
+
+.imgCardInchirieri{
+    width:30%;
+    height:100%;
+    display:inline-block;
+    float:left;
+    border-radius: 1vmax 0 0 1vmax !important;
+}
+
+.divTextCardInchirieri{
+    padding-top: 1%;
+    padding-left: 20%;
+}
+
+.textCardInchirieri{
+    width:70%;
+    height:fit-content;
+    display:inline-block;
+    color: whitesmoke;
+    text-align: left;
+    font-size: 1vmax;
+    margin-bottom: 0.6vmax !important;
+}
+
+.imgCardDreaptaInchirieri{
+    width:30%;
+    height:100%;
+    display:inline-block;
+    float:right;
+    border-radius:0 1vmax 1vmax 0!important;
+}
+
+.divTextCardDreaptaInchirieri{
+}
+
+.textCardDreaptaInchirieri{
+    padding-top: 3%;
+    padding-right: 6%;
+    width:70%;
+    height:fit-content;
+    color: whitesmoke;
+    text-align: right;
+    font-size: 1vmax;
+    margin-bottom: 0.6vmax !important;
+    float: left;
+}
+
+.rippleInchirieri {
+    background-position: center;
+    transition: background 0.8s;
+}
+.rippleInchirieri:hover {
+    background: rgba(61, 61, 61, 0.7) radial-gradient(circle, transparent 1%, rgba(70, 69, 69, 0.7) 1%) center/15000%;
+}
+.rippleInchirieri:active {
+    background-color: rgba(72, 71, 71, 0.7);
+    background-size: 100%;
+    transition: background 0s;
+}
+
+.sidenavInchirieri{
+    display: inline-block;
+    height: 100vh;
+    width: 12%;
+    background-color:#343a40;
+    float: left;
+    margin: 0 !important;
+    position: sticky;
+    top:1vmax;
+}
+
+.sideNavCaseInchirieri{
+    position: sticky;
+    top:33.8vmax;
+    display: block !important;
+    margin-left: 2vmax;
+    margin-bottom: 2vmax;
+    background-color: #343a40 !important;
+    border-width: 0 !important;
+}
+.sideNavApartamentInchirieri{
+    position: sticky;
+    top:38.5vmax;
+    display: block !important;
+    margin-left: 2vmax;
+    margin-bottom: 2vmax;
+    background-color: #343a40 !important;
+    border-width: 0 !important;
+}
+.sideNavGarsoniereInchirieri{
+    position: sticky;
+    top:43.5vmax;
+    display: block !important;
+    margin-left: 2vmax;
+    margin-bottom: 2vmax;
+    background-color: #343a40 !important;
+    border-width: 0 !important;
+}
+
+.aSidenavInchirieri{
+    color:white;
+    text-decoration: none;
+}
+
+.aSidenavInchirieri:hover{
+    color:black;
+    text-decoration: none;
+}
+
+.sideNavTextInchirieri{
+    color:white;
+    font-size: 2vmax;
+    width:7vmax;
+    text-align: center;
+    margin-left: 3vmax;
+
+    position: sticky;
+    z-index: 0;
+    top:20vmax;
+
+}
+
+.imagineCaseInchirieri{
+    width: 88%;
+    height: fit-content;
+    padding-bottom: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../commons/images/caseFundal.png);
+    opacity: 0.9;
+    margin-left: 12%;
+}
+.imagineApartamenteInchirieri{
+    width: 88%;
+    height: fit-content;
+    padding-bottom: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-image: url(../commons/images/pozaApartamentFundal.avif);
+    opacity: 0.9;
+    margin-left: 12%;
+}
+.imagineGarsoniereInchirieri{
+    width: 88%;
+    height: fit-content;
+    padding-bottom: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-image: url(../commons/images/pozaGarsonieraFundal.avif);
+    opacity: 0.9;
+    margin-left: 12%;
+}
+
+.textImagineInchirieri{
+    height: fit-content;
+    width: fit-content;
+
+    font-family: 'Karla', serif;
+    font-style: normal;
+    /*font-weight: 400;*/
+    font-size: 3vmax;
+    line-height: 112px;
+
+    margin-left: 35%;
+
+    color: #000000;
+}
+
+.inputSearchInchirieri{
+    display: block;
+    float:left;
+    margin-left: 5vmax;
+    width: 25vmax !important;
+    margin-right: 1vmax;
+    height: 3vmax !important;
+}
+
+.labelSearchInchirieri{
+    float:left;
+    width: 20% !important;
+    margin-left: 5vmax;
+    display: block;
+    font-size: 1.5vmax;
+}
+
+.buttonSearchInchirieri{
+    background-color: whitesmoke !important;
+    color: black !important;
+    border-radius:15px 15px 15px 15px !important;
+    width: 10vmax !important;
+    height: 3vmax !important;
 }

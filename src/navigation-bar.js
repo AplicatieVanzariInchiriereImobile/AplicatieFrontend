@@ -12,8 +12,8 @@ import {
 
 //aici e o constanta, e un div
 const NavigationBar = () => (
-    <div>
-        <Navbar color="dark" light expand="md">
+    <div style={{display:"unset"}}>
+        <Navbar color="dark" light expand="md" style={{position:"sticky", top:"0vmax", width:"100%", zIndex:"1"}}>
             <NavbarBrand href="/">
                 <img src={logo} width={"50"}
                      height={"35"} />

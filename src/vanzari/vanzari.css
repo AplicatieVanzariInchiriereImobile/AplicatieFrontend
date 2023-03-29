@@ -20,7 +20,8 @@
 
 .divTextCardVanzari{
     padding-top: 1%;
-    padding-left: 20%;
+    padding-right: 24%;
+    float:right;
 }
 
 .textCardVanzari{
@@ -68,4 +69,144 @@
     background-color: rgba(72, 71, 71, 0.7);
     background-size: 100%;
     transition: background 0s;
+}
+
+.sidenav{
+    display: inline-block;
+    height: 100vh;
+    width: 13%;
+    background-color:#343a40;
+    float: left;
+    margin: 0 !important;
+    position: sticky;
+    top:1vmax;
+    padding: 0 !important;
+}
+
+.sideNavCase{
+    position: sticky;
+    top:33.8vmax;
+    display: block !important;
+    margin-left: 2vmax;
+    margin-bottom: 2vmax;
+    background-color: #343a40 !important;
+    border-width: 0 !important;
+}
+.sideNavApartament{
+    position: sticky;
+    top:38.5vmax;
+    display: block !important;
+    margin-left: 2vmax;
+    margin-bottom: 2vmax;
+    background-color: #343a40 !important;
+    border-width: 0 !important;
+}
+.sideNavGarsoniere{
+    position: sticky;
+    top:43.5vmax;
+    display: block !important;
+    margin-left: 2vmax;
+    margin-bottom: 2vmax;
+    background-color: #343a40 !important;
+    border-width: 0 !important;
+}
+
+.aSidenav{
+    color:white;
+    text-decoration: none;
+}
+
+.aSidenav:hover{
+    color:black;
+    text-decoration: none;
+}
+
+.sideNavText{
+    color:white;
+    font-size: 2vmax;
+    width:7vmax;
+    text-align: center;
+    margin-left: 3vmax;
+
+    position: sticky;
+    z-index: 0;
+    top:20vmax;
+
+}
+
+.imagineCaseVanzare{
+    width: 87%;
+    height: fit-content;
+    padding-bottom: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-image: url(../commons/images/caseFundal.png);
+    opacity: 0.9;
+    margin-left: 13%;
+    margin-right: 0!important;
+}
+.imagineApartamenteVanzare{
+    width: 87%;
+    height: fit-content;
+    padding-bottom: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-image: url(../commons/images/pozaApartamentFundal.avif);
+    opacity: 0.9;
+    margin-left: 13%;
+    margin-right: 0!important;
+}
+.imagineGarsoniereVanzare{
+    width: 87%;
+    height: fit-content;
+    padding-bottom: 2%;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-image: url(../commons/images/pozaGarsonieraFundal.avif);
+    opacity: 0.9;
+    margin-left: 13%;
+    margin-right: 0!important;
+}
+
+.textImagineVanzari{
+    height: fit-content;
+    width: fit-content;
+
+    font-family: 'Karla', serif;
+    font-style: normal;
+    /*font-weight: 400;*/
+    font-size: 3vmax;
+    line-height: 112px;
+
+    margin-left: 35%;
+
+    color: #000000;
+}
+
+.inputSearch{
+    display: block;
+    float:left;
+    margin-left: 5vmax;
+    width: 25vmax !important;
+    margin-right: 1vmax;
+    height: 3vmax !important;
+}
+
+.labelSearch{
+    float:left;
+    width: 25% !important;
+    margin-left: 5vmax;
+    display: block;
+    font-size: 1.5vmax;
+}
+
+.buttonSearch{
+    background-color: whitesmoke !important;
+    color: black !important;
+    border-radius:15px 15px 15px 15px !important;
+    width: 10vmax !important;
+    height: 3vmax !important;
 }
