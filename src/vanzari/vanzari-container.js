@@ -1,61 +1,119 @@
-import React, { useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import NavigationBar from "../navigation-bar";
 import './vanzari.css';
-import {Button, Card, CardBody, Col, Input, Label, Row} from "reactstrap";
+import {Button, Card, CardBody, Col, Input, Label, Modal, ModalBody, ModalHeader, Row} from "reactstrap";
 
-import pozaApartamentVanzare1 from "../commons/images/pozaApartamentVanzare1.avif";
-import pozaCasaVanzare1 from "../commons/images/pozaCasaVanzare1.avif";
-import pozaCasaVanzare2 from "../commons/images/pozaCasaVanzare2.avif";
-import pozaCasaVanzare3 from "../commons/images/pozaCasaVanzare3.avif";
-import pozaGarsoniereVanzare1 from "../commons/images/pozaGarsonieraVanzare1.avif";
-import pozaGarsoniereVanzare2 from "../commons/images/pozaGarsonieraVanzare2.avif";
+import * as API_VANZARI from "./api/vanzari-api";
+import {AppContext} from "../AppContext";
+import VanzariFormAdd from "./components/vanzari-form-add";
+import VanzariFormUpdate from "./components/vanzari-form-update";
+import VanzariFormDelete from "./components/vanzari-form-delete";
 
-const cardsApartamente = [
-    {
-        text1: "Apartament, etaj 1,  70 metri patrati, 3 camere",
-        text2: "Strada Dorobantilor  nr. 14, Cluj-Napoca, Cluj",
-        text3: "125000$",
-        img: pozaApartamentVanzare1,
-    },
-];
-
-const cardsCase = [
-    {
-        text1: "Casa, 200 metri patrati, 3 camere, 2 bai, bucatarie",
-        text2: "Strada Avram Iancu nr. 14, Cluj-Napoca, Cluj",
-        text3: "300000$",
-        img: pozaCasaVanzare1,
-    },
-    {
-        text1: "Casa, 250 metri patrati, 3 camere, 2 bai, bucatarie",
-        text2: "Strada Memorandumului nr. 28, Cluj-Napoca, Cluj",
-        text3: "400000$",
-        img: pozaCasaVanzare2,
-    },
-    {
-        text1: "Casa, 100 metri patrati, 2 camere, 1 baie, bucatarie",
-        text2: "Strada Avram Iancu nr. 18, Cluj-Napoca, Cluj",
-        text3: "100000$",
-        img: pozaCasaVanzare3,
-    },
-];
-
-const cardsGarsoniere = [
-    {
-        text1: "Garsoniera, etaj 4,  30 metri patrati",
-        text2: "Strada Dorobantilor  nr. 14, Cluj-Napoca, Cluj",
-        text3: "75000$",
-        img: pozaGarsoniereVanzare1,
-    },
-    {
-        text1: "Garsoniera, etaj 1, 50 metri patrati",
-        text2: "Strada Memorandumului nr. 28, Cluj-Napoca, Cluj",
-        text3: "100000$",
-        img: pozaGarsoniereVanzare2,
-    },
-];
 
 export default function VanzariContainer() {
+
+    const [cardsApartamente, setCardsApartamente] = useState([]);
+    const [cardsCase, setCardsCase] = useState([]);
+    const [cardsGarsoniere, setCardsGarsoniere] = useState([]);
+
+    const { isAdmin, isLoggedIn, emailLoggedUser, setIsAdmin, setIsLoggedIn, setEmailLoggedUser,
+        descriere, setDescriere, adresa, setAdresa, pret, setPret, tip, setTip} = useContext(AppContext);
+    const [selectedAdd, setSelectedAdd] = useState(false);
+    const [selectedUpdate, setSelectedUpdate] = useState(false);
+    const [selectedDelete, setSelectedDelete] = useState(false);
+    const [AdminOrNot, setAdminOrNot]= useState();
+
+    const fetchVanzari = () => {
+        return API_VANZARI.getVanzari((result, status, err) => {
+            setCardsApartamente([]);
+            setCardsCase([]);
+            setCardsGarsoniere([]);
+            console.log(result);
+            if (result !== null && status === 200) {
+                //result.forEach(
+                //    {} => setCardsApartamente(oldArray => [...oldArray, vanzare]))
+                for(const vanzare of result.lista_vanzari)
+                {
+                    if(vanzare.tip === "Apartament")
+                    {
+                        setCardsApartamente(oldArray => [...oldArray, vanzare])
+                    }
+                    else if(vanzare.tip === "Casa")
+                    {
+                        setCardsCase(oldArray => [...oldArray, vanzare])
+                    }
+                    else if(vanzare.tip === "Garsoniera")
+                    {
+                        setCardsGarsoniere(oldArray => [...oldArray, vanzare])
+                    }
+                }
+            } else {
+            }
+        });
+    }
+
+    useEffect(() => {
+        fetchVanzari();
+
+
+        setIsLoggedIn(localStorage.getItem("isLoggedIn"));
+        setIsAdmin(localStorage.getItem("isAdmin"));
+        setAdresa(localStorage.getItem("adresa"));
+
+        if (isLoggedIn ==="true" && isAdmin === "true")
+            setAdminOrNot(<div style={{paddingTop: "2%", paddingBottom:"2%", width:"100%", height:"fit-content"}}>
+                <h2>Admin Operations - Last Selected: {adresa}</h2>
+                <Button style={{marginRight: "1%"}} className="buttonSearch" onClick={toggleFormAdd}>Add</Button>
+                <Button style={{marginRight: "1%"}} className="buttonSearch" onClick={toggleFormUpdate}>Update</Button>
+                <Button className="buttonSearch" onClick={toggleFormDelete}>Delete</Button>
+            </div>)
+        else {
+            setAdminOrNot(<div>
+            </div>)
+            }
+
+    },[isLoggedIn, isAdmin, selectedAdd, selectedUpdate, selectedDelete, adresa])
+
+
+    const toggleFormAdd = () => {
+        setSelectedAdd(!selectedAdd);
+    }
+
+    const toggleFormUpdate = () => {
+        setSelectedUpdate(!selectedUpdate);
+    }
+
+    const toggleFormDelete = () => {
+        setSelectedDelete(!selectedDelete);
+    }
+
+    const reload = (whichOne) => {
+        if(whichOne === 1)
+        {
+            toggleFormAdd();
+        }
+        else if(whichOne === 2)
+        {
+            toggleFormUpdate();
+        }
+        else if(whichOne === 3)
+        {
+            toggleFormDelete();
+        }
+    }
+
+    const setSelectedFields = (descriere, adresa, pret, tip) => {
+        setDescriere(descriere);
+        localStorage.setItem("descriere", descriere);
+        setAdresa(adresa);
+        localStorage.setItem("adresa", adresa);
+        setPret(pret);
+        localStorage.setItem("pret", pret);
+        setTip(tip);
+        localStorage.setItem("tip", tip);
+    }
+
+
     return (
         <div>
             <NavigationBar />
@@ -66,6 +124,7 @@ export default function VanzariContainer() {
                 <Button className="sideNavGarsoniere"><a className="aSidenav" href="#sectionGarsoniere">Garsoniere</a></Button>
             </div>
             <div id="sectionCase" className="imagineCaseVanzare">
+                {AdminOrNot}
                 <h1 className="textImagineVanzari">Case De Vanzare</h1>
                 <Row style={{width:"80%"}}>
                     <Label className="labelSearch">Inserati locatia dorita</Label>
@@ -79,19 +138,20 @@ export default function VanzariContainer() {
                         return (
                             <Col sm={{offset: 3}} key={index}>
                                 <Card
-                                    onClick={() => {}}
+                                    onClick={() => setSelectedFields(cardsCase[index].descriere, cardsCase[index].adresa, cardsCase[index].pret,
+                                        "Casa")}
                                     className="cardVanzari ripple"
                                 >
                                     <CardBody className="cardBodyVanzari">
                                         <div className="divTextCardVanzari">
-                                            <p className="textCardVanzari">{cardsCase[index].text1} <br></br><br></br>
-                                                {cardsCase[index].text2} <br></br><br></br>
-                                                {cardsCase[index].text3}
+                                            <p className="textCardVanzari">{cardsCase[index].descriere} <br></br><br></br>
+                                                {cardsCase[index].adresa} <br></br><br></br>
+                                                {cardsCase[index].pret + "$"}
                                             </p>
                                         </div>
                                         <img
                                             alt="Card cap"
-                                            src={cardsCase[index].img}
+                                            src={require("../commons/images/" + cardsCase[index].adresa + ".avif")}
                                             className="imgCardVanzari"
                                         />
                                     </CardBody>
@@ -115,19 +175,20 @@ export default function VanzariContainer() {
                         return (
                             <Col sm={{offset: 3}} key={index}>
                                 <Card
-                                    onClick={() => {}}
+                                    onClick={() => setSelectedFields(cardsApartamente[index].descriere, cardsApartamente[index].adresa, cardsApartamente[index].pret,
+                                        "Apartament")}
                                     className="cardVanzari ripple"
                                 >
                                     <CardBody className="cardBodyVanzari">
                                         <div className="divTextCardVanzari">
-                                            <p className="textCardVanzari">{cardsApartamente[index].text1} <br></br><br></br>
-                                                {cardsApartamente[index].text2} <br></br><br></br>
-                                                {cardsApartamente[index].text3}
+                                            <p className="textCardVanzari">{cardsApartamente[index].descriere} <br></br><br></br>
+                                                {cardsApartamente[index].adresa} <br></br><br></br>
+                                                {cardsApartamente[index].pret + "$"}
                                             </p>
                                         </div>
                                         <img
                                             alt="Card cap"
-                                            src={cardsCase[index].img}
+                                            src={require("../commons/images/" + cardsApartamente[index].adresa + ".avif")}
                                             className="imgCardVanzari"
                                         />
                                     </CardBody>
@@ -151,19 +212,20 @@ export default function VanzariContainer() {
                         return (
                             <Col sm={{offset: 3}} key={index}>
                                 <Card
-                                    onClick={() => {}}
+                                    onClick={() => setSelectedFields(cardsGarsoniere[index].descriere, cardsGarsoniere[index].adresa, cardsGarsoniere[index].pret,
+                                    "Garsoniera")}
                                     className="cardVanzari ripple"
                                 >
                                     <CardBody className="cardBodyVanzari">
                                         <div className="divTextCardVanzari">
-                                            <p className="textCardVanzari">{cardsGarsoniere[index].text1} <br></br><br></br>
-                                                {cardsGarsoniere[index].text2} <br></br><br></br>
-                                                {cardsGarsoniere[index].text3}
+                                            <p className="textCardVanzari">{cardsGarsoniere[index].descriere} <br></br><br></br>
+                                                {cardsGarsoniere[index].adresa} <br></br><br></br>
+                                                {cardsGarsoniere[index].pret + "$"}
                                             </p>
                                         </div>
                                         <img
                                             alt="Card cap"
-                                            src={cardsCase[index].img}
+                                            src={require("../commons/images/" + cardsGarsoniere[index].adresa + ".avif")}
                                             className="imgCardVanzari"
                                         />
                                     </CardBody>
@@ -173,6 +235,34 @@ export default function VanzariContainer() {
                     })}
                 </Row>
             </div>
+
+            <Modal isOpen={selectedAdd} toggle={toggleFormAdd}
+                // className={this.props.className}
+                   size="lg">
+                <ModalHeader style={{backgroundColor: '#496185'}} toggle={toggleFormAdd}> Add: </ModalHeader>
+                <ModalBody style={{backgroundColor: '#496185'}}>
+                    <VanzariFormAdd reloadHandler={() => reload(1)}/>
+                </ModalBody>
+            </Modal>
+
+
+            <Modal isOpen={selectedUpdate} toggle={toggleFormUpdate}
+                // className={this.props.className}
+                   size="lg">
+                <ModalHeader style={{backgroundColor: '#496185'}} toggle={toggleFormUpdate}> Update: </ModalHeader>
+                <ModalBody style={{backgroundColor: '#496185'}}>
+                    <VanzariFormUpdate reloadHandler={() => reload(2)}/>
+                </ModalBody>
+            </Modal>
+
+            <Modal isOpen={selectedDelete} toggle={toggleFormDelete}
+                // className={this.props.className}
+                   size="lg">
+                <ModalHeader style={{backgroundColor: '#496185'}} toggle={toggleFormDelete}> Delete: </ModalHeader>
+                <ModalBody style={{backgroundColor: '#496185'}}>
+                    <VanzariFormDelete reloadHandler={() => reload(3)}/>
+                </ModalBody>
+            </Modal>
         </div>
     );
 }

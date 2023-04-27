@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import NavigationBar from "../navigation-bar";
 import './inchirieri.css';
 import {Button, Card, CardBody, CardHeader, Col, Input, Label, Row} from "reactstrap";
-import pozaApartamentInchiriere1 from "../commons/images/pozaApartamentInchiriere1.avif";
-import pozaApartamentInchiriere2 from "../commons/images/pozaApartamentInchiriere2.avif";
-import pozaApartamentInchiriere3 from "../commons/images/pozaApartamentInchiriere3.avif";
-import pozaCasaInchiriere1 from "../commons/images/pozaCasaInchiriere1.avif"
-import pozaCasaInchiriere2 from "../commons/images/pozaCasaInchiriere2.avif"
-import pozaCasaInchiriere3 from "../commons/images/pozaCasaInchiriere3.avif"
-import pozaGarsoniereInchiriere1 from "../commons/images/pozaGarsonieraInchirere1.avif"
+import pozaApartamentInchiriere1 from "../commons/images/Strada Plopilor, nr. 23,Cluj-Napoca.avif";
+import pozaApartamentInchiriere2 from "../commons/images/Strada Mihai Eminescu, nr. 7, Apahida, Cluj.avif";
+import pozaApartamentInchiriere3 from "../commons/images/Strada Plopilor, nr. 10, Cluj-Napoca.avif";
+import pozaCasaInchiriere1 from "../commons/images/Strada Mihai Eminescu, nr. 1, Apahida, Cluj.avif"
+import pozaCasaInchiriere2 from "../commons/images/Strada Memorandumului nr. 2, Cluj-Napoca, Cluj.avif"
+import pozaCasaInchiriere3 from "../commons/images/Strada Plopilor, nr. 19, Cluj-Napoca.avif"
+import pozaGarsoniereInchiriere1 from "../commons/images/Strada Mihai Eminescu, nr. 77, Apahida, Cluj.avif"
 export default function InchirieriContainer() {
 
     const cardsApartamente = [
@@ -26,7 +26,7 @@ export default function InchirieriContainer() {
         },
         {
             text1: "Apartament, etaj 4, 80 metri patrati, 4 camere",
-            text2: "Strada Plopilor, nr. 23, Cluj-Napoca",
+            text2: "Strada Plopilor, nr. 10, Cluj-Napoca",
             text3: "700$",
             img: pozaApartamentInchiriere3,
         },
@@ -35,19 +35,19 @@ export default function InchirieriContainer() {
     const cardsCase = [
         {
             text1: "Casa, 400 metri patrati, 5 camere, 3 bai, bucatarie",
-            text2: "Strada Mihai Eminescu, nr. 7, Apahida, Cluj",
+            text2: "Strada Mihai Eminescu, nr. 1, Apahida, Cluj",
             text3: "1050$",
             img: pozaCasaInchiriere1,
         },
         {
             text1: "Casa, 200 metri patrati, 2 camere, 2 bai, bucatarie",
-            text2: "Strada Memorandumului nr. 28, Cluj-Napoca, Cluj",
+            text2: "Strada Memorandumului nr. 2, Cluj-Napoca, Cluj",
             text3: "850$",
             img: pozaCasaInchiriere2,
         },
         {
             text1: "Casa, 150 metri patrati, 3 camere, 1 baie, bucatarie",
-            text2: "Strada Plopilor, nr. 23, Cluj-Napoca",
+            text2: "Strada Plopilor, nr. 19, Cluj-Napoca",
             text3: "700$",
             img: pozaCasaInchiriere3,
         },
@@ -56,7 +56,7 @@ export default function InchirieriContainer() {
     const cardsGarsoniere = [
         {
             text1: "Garsoniera, etaj 2, 35 metri patrati",
-            text2: "Strada Mihai Eminescu, nr. 7, Apahida, Cluj",
+            text2: "Strada Mihai Eminescu, nr. 77, Apahida, Cluj",
             text3: "200$",
             img: pozaGarsoniereInchiriere1,
         },
