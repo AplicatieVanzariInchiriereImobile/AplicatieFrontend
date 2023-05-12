@@ -18,7 +18,8 @@ import * as API_HOME from "./home/api/home-api";
 export default function NavigationBar() {
 
     const [selected, setSelected] = useState(false);
-    const { isAdmin, isLoggedIn, emailLoggedUser, setIsAdmin, setIsLoggedIn, setEmailLoggedUser } = useContext(AppContext);
+    const { isAdmin, isLoggedIn, emailLoggedUser, setIsAdmin, setIsLoggedIn, setEmailLoggedUser,
+        descriere, setDescriere, adresa, setAdresa, pret, setPret, tip, setTip } = useContext(AppContext);
     const [LoginOrNot, setLoginOrNot]= useState();
 
     useEffect(() => {
@@ -66,6 +67,16 @@ export default function NavigationBar() {
                 localStorage.setItem("emailLoggedUser","");
                 setIsAdmin(false);
                 localStorage.setItem("isAdmin", false);
+                setEmailLoggedUser("");
+                localStorage.setItem("emailLoggedUser","");
+                setDescriere("");
+                localStorage.setItem("descriere", "");
+                setAdresa("");
+                localStorage.setItem("adresa", "");
+                setPret("");
+                localStorage.setItem("pret", "");
+                setTip("");
+                localStorage.setItem("tip", "");
             }
             else {
                 // this.setState(({

@@ -8,6 +8,7 @@ import {AppContext} from "../AppContext";
 import VanzariFormAdd from "./components/vanzari-form-add";
 import VanzariFormUpdate from "./components/vanzari-form-update";
 import VanzariFormDelete from "./components/vanzari-form-delete";
+import ProgramariFormAdd from "./components/programari-form-add";
 
 
 export default function VanzariContainer() {
@@ -22,6 +23,8 @@ export default function VanzariContainer() {
     const [selectedUpdate, setSelectedUpdate] = useState(false);
     const [selectedDelete, setSelectedDelete] = useState(false);
     const [AdminOrNot, setAdminOrNot]= useState();
+
+    const [selectedAddProgramare, setSelectedAddProgramare] = useState(false);
 
     const fetchVanzari = () => {
         return API_VANZARI.getVanzari((result, status, err) => {
@@ -60,19 +63,35 @@ export default function VanzariContainer() {
         setIsAdmin(localStorage.getItem("isAdmin"));
         setAdresa(localStorage.getItem("adresa"));
 
-        if (isLoggedIn ==="true" && isAdmin === "true")
+        if (isLoggedIn ==="true" && isAdmin === "true" && localStorage.getItem("adresa") !== "")
             setAdminOrNot(<div style={{paddingTop: "2%", paddingBottom:"2%", width:"100%", height:"fit-content"}}>
                 <h2>Admin Operations - Last Selected: {adresa}</h2>
                 <Button style={{marginRight: "1%"}} className="buttonSearch" onClick={toggleFormAdd}>Add</Button>
                 <Button style={{marginRight: "1%"}} className="buttonSearch" onClick={toggleFormUpdate}>Update</Button>
                 <Button className="buttonSearch" onClick={toggleFormDelete}>Delete</Button>
             </div>)
-        else {
-            setAdminOrNot(<div>
+        else if (isLoggedIn ==="true" && isAdmin === "true" && localStorage.getItem("adresa") === "")
+            setAdminOrNot(<div style={{paddingTop: "2%", paddingBottom:"2%", width:"100%", height:"fit-content"}}>
+                <h2>Admin Operations - Last Selected: {adresa}</h2>
+                <Button style={{marginRight: "1%"}} className="buttonSearch" onClick={toggleFormAdd}>Add</Button>
+            </div>)
+        else if (isLoggedIn ==="true" && isAdmin === "false" && localStorage.getItem("adresa") !== ""){
+            setAdminOrNot(<div style={{paddingTop: "2%", paddingBottom:"2%", width:"100%", height:"fit-content"}}>
+                <h2>Add Reservation - Last Selected: {adresa}</h2>
+                <Button style={{marginRight: "1%"}} className="buttonSearch" onClick={toggleFormAddProgramare}>Add Reservation</Button>
             </div>)
             }
+        else if (isLoggedIn ==="true" && isAdmin === "false" && localStorage.getItem("adresa") === ""){
+            setAdminOrNot(<div style={{paddingTop: "2%", paddingBottom:"2%", width:"100%", height:"fit-content"}}>
+                <h2>Add Reservation - Last Selected: {adresa}</h2>
+            </div>)
+        }
+        else{
+            setAdminOrNot(<div>
+            </div>)
+        }
 
-    },[isLoggedIn, isAdmin, selectedAdd, selectedUpdate, selectedDelete, adresa])
+    },[isLoggedIn, isAdmin, selectedAdd, selectedUpdate, selectedDelete, adresa, selectedAddProgramare])
 
 
     const toggleFormAdd = () => {
@@ -87,6 +106,10 @@ export default function VanzariContainer() {
         setSelectedDelete(!selectedDelete);
     }
 
+    const toggleFormAddProgramare = () => {
+        setSelectedAddProgramare(!selectedAddProgramare);
+    }
+
     const reload = (whichOne) => {
         if(whichOne === 1)
         {
@@ -99,6 +122,10 @@ export default function VanzariContainer() {
         else if(whichOne === 3)
         {
             toggleFormDelete();
+        }
+        else if(whichOne === 4)
+        {
+            toggleFormAddProgramare();
         }
     }
 
@@ -261,6 +288,15 @@ export default function VanzariContainer() {
                 <ModalHeader style={{backgroundColor: '#496185'}} toggle={toggleFormDelete}> Delete: </ModalHeader>
                 <ModalBody style={{backgroundColor: '#496185'}}>
                     <VanzariFormDelete reloadHandler={() => reload(3)}/>
+                </ModalBody>
+            </Modal>
+
+            <Modal isOpen={selectedAddProgramare} toggle={toggleFormAddProgramare}
+                // className={this.props.className}
+                   size="lg">
+                <ModalHeader style={{backgroundColor: '#496185'}} toggle={toggleFormAddProgramare}> Add Reservation: </ModalHeader>
+                <ModalBody style={{backgroundColor: '#496185'}}>
+                    <ProgramariFormAdd reloadHandler={() => reload(4)}/>
                 </ModalBody>
             </Modal>
         </div>

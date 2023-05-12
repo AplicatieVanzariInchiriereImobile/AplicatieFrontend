@@ -60,9 +60,34 @@ function getVanzari(callback) {
     RestApiClient.performRequest(request, callback);
 }
 
+function insertProgramare(programare, callback){
+    let request = new Request(HOST.backend_api  + "/insertProgramari" , {
+        method: 'POST',
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(programare)
+    });
+
+    console.log("URL: " + request.url);
+
+    RestApiClient.performRequest(request, callback);
+}
+
+function getProgramariForImobil(address, callback) {
+    let request = new Request(HOST.backend_api + "/getProgramari/" + address, {
+        method: 'GET',
+    });
+    console.log(request.url);
+    RestApiClient.performRequest(request, callback);
+}
+
 export {
     insertVanzari,
     updateVanzari,
     deleteVanzari,
-    getVanzari
+    getVanzari,
+    insertProgramare,
+    getProgramariForImobil,
 };
