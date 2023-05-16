@@ -7,6 +7,14 @@ import {Col, Row} from "reactstrap";
 import { FormGroup, Input, Label} from 'reactstrap';
 import { withRouter } from "react-router-dom";
 import {AppContext} from "../../AppContext";
+import DatePicker from 'react-date-picker';
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
+import "react-clock/dist/Clock.css";
+
+import "../vanzari.css"
 
 
 const buttonStyle1 = {backgroundColor: '#751212'};
@@ -20,6 +28,8 @@ class ProgramariFormAdd extends React.Component {
 
         this.state = {
 
+            inputDate: new Date(),
+            inputTime: new Date().getHours() + ":" + new Date().getMinutes(),
             //errorStatus: 0,
             //error: null,
             formIsValid: true,
@@ -65,6 +75,21 @@ class ProgramariFormAdd extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChangeDate = this.onChangeDate.bind(this);
+        this.onChangeTime = this.onChangeTime.bind(this);
+    }
+
+    onChangeDate(date){
+        this.setState({
+            inputDate: date
+        });
+    }
+
+    onChangeTime(time){
+
+        this.setState({
+            inputTime: time
+        });
     }
 
     toggleForm() {
@@ -129,12 +154,43 @@ class ProgramariFormAdd extends React.Component {
             adresaImobil: this.state.formControls.adresa.value,
             pretImobil: this.state.formControls.pret.value,
             tipImobil: this.state.formControls.tip.value,
-            data: "2023-05-13T14:00:00",
+            data: this.state.inputDate.getFullYear() + "-" + this.state.inputDate.getMonth() + "-" + this.state.inputDate.getDay()
+                + "T" + this.state.inputTime + ":00",
             emailUser: localStorage.getItem("emailLoggedUser")
         };
 
-        console.log(programare);
-        this.insertProgramare(programare);
+        if((this.state.inputDate.getMonth() + 1)<10)
+        {
+            if(this.state.inputDate.getDate()<10)
+            {
+                programare.data = this.state.inputDate.getFullYear() + '-0' + (this.state.inputDate.getMonth() + 1) + '-0' + this.state.inputDate.getDate() + "T" + this.state.inputTime
+                    + ":00";
+            }
+            else
+            {
+                programare.data = this.state.inputDate.getFullYear() + '-0' + (this.state.inputDate.getMonth() + 1) + '-' + this.state.inputDate.getDate() + "T" + this.state.inputTime
+                    + ":00";
+            }
+        }
+        else
+        {
+            if(this.state.inputDate.getDate()<10)
+            {
+                programare.data = this.state.inputDate.getFullYear() + '-' + (this.state.inputDate.getMonth() + 1) + '-0' + this.state.inputDate.getDate() + "T" + this.state.inputTime
+                    + ":00";
+            }
+        }
+
+        console.log(programare.data);
+        let minutes = this.state.inputTime.substr(3, 4);
+        if(minutes === "00")
+        {
+            this.insertProgramare(programare);
+        }
+        else
+        {
+            window.alert("Minutes must be 00");
+        }
     }
 
     //si aici render, cu componente noi
@@ -198,7 +254,11 @@ class ProgramariFormAdd extends React.Component {
                         <div className={"error-message"}> * Tip must have a valid format</div>}
                 </FormGroup>
 
+                <Label> Date: </Label>
+                <DatePicker className = {"datePicker"} value={this.state.inputDate} onChange={ this.onChangeDate } format={"yyyy-MM-dd"}/>
 
+                <Label> Hour: </Label>
+                <TimePicker className = {"timePicker"} value={this.state.inputTime} onChange={this.onChangeTime}/>
 
                 <Row>
                     <Col sm={{size: '4', offset: 5}}>

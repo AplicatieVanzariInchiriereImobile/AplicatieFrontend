@@ -210,3 +210,16 @@
     width: 12vmax !important;
     height: 3vmax !important;
 }
+
+.datePicker{
+    display: block !important;
+    width: fit-content;
+    margin-bottom: 1%;
+    background-color: whitesmoke;
+}
+
+.timePicker{
+    display: block !important;
+    width: fit-content;
+    background-color: whitesmoke;
+}

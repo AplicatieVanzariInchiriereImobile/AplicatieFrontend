@@ -9,6 +9,7 @@ import VanzariFormAdd from "./components/vanzari-form-add";
 import VanzariFormUpdate from "./components/vanzari-form-update";
 import VanzariFormDelete from "./components/vanzari-form-delete";
 import ProgramariFormAdd from "./components/programari-form-add";
+import RezervationChartForm from "./components/rezervations-chart-form";
 
 
 export default function VanzariContainer() {
@@ -25,6 +26,11 @@ export default function VanzariContainer() {
     const [AdminOrNot, setAdminOrNot]= useState();
 
     const [selectedAddProgramare, setSelectedAddProgramare] = useState(false);
+    const [selectedViewChart, setSelectedViewChart] = useState(false);
+
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
 
     const fetchVanzari = () => {
         return API_VANZARI.getVanzari((result, status, err) => {
@@ -110,6 +116,19 @@ export default function VanzariContainer() {
         setSelectedAddProgramare(!selectedAddProgramare);
     }
 
+    const toggleFormViewChart = (adresaChart) => {
+
+        if(selectedViewChart === false)
+        {
+            localStorage.setItem("adresaChart", adresaChart);
+        }
+        else
+        {
+            localStorage.setItem("adresaChart", "");
+        }
+        setSelectedViewChart(!selectedViewChart);
+    }
+
     const reload = (whichOne) => {
         if(whichOne === 1)
         {
@@ -127,17 +146,24 @@ export default function VanzariContainer() {
         {
             toggleFormAddProgramare();
         }
+        else if(whichOne === 5)
+        {
+            toggleFormViewChart();
+        }
     }
 
     const setSelectedFields = (descriere, adresa, pret, tip) => {
-        setDescriere(descriere);
-        localStorage.setItem("descriere", descriere);
-        setAdresa(adresa);
-        localStorage.setItem("adresa", adresa);
-        setPret(pret);
-        localStorage.setItem("pret", pret);
-        setTip(tip);
-        localStorage.setItem("tip", tip);
+        if (isLoggedIn ==="true")
+        {
+            setDescriere(descriere);
+            localStorage.setItem("descriere", descriere);
+            setAdresa(adresa);
+            localStorage.setItem("adresa", adresa);
+            setPret(pret);
+            localStorage.setItem("pret", pret);
+            setTip(tip);
+            localStorage.setItem("tip", tip);
+        }
     }
 
 
@@ -163,27 +189,32 @@ export default function VanzariContainer() {
                 <Row style={{width:"80%"}}>
                     {Array.from(Array(cardsCase.length)).map((item, index) => {
                         return (
-                            <Col sm={{offset: 3}} key={index}>
-                                <Card
-                                    onClick={() => setSelectedFields(cardsCase[index].descriere, cardsCase[index].adresa, cardsCase[index].pret,
-                                        "Casa")}
-                                    className="cardVanzari ripple"
-                                >
-                                    <CardBody className="cardBodyVanzari">
-                                        <div className="divTextCardVanzari">
-                                            <p className="textCardVanzari">{cardsCase[index].descriere} <br></br><br></br>
-                                                {cardsCase[index].adresa} <br></br><br></br>
-                                                {cardsCase[index].pret + "$"}
-                                            </p>
-                                        </div>
-                                        <img
-                                            alt="Card cap"
-                                            src={require("../commons/images/" + cardsCase[index].adresa + ".avif")}
-                                            className="imgCardVanzari"
-                                        />
-                                    </CardBody>
-                                </Card>
-                            </Col>
+                            <Row style={{width:"100%"}}>
+                                <Col sm={{offset: 2}} key={index}>
+                                    <Card
+                                        onClick={() => setSelectedFields(cardsCase[index].descriere, cardsCase[index].adresa, cardsCase[index].pret,
+                                            "Casa")}
+                                        className="cardVanzari ripple"
+                                    >
+                                        <CardBody className="cardBodyVanzari">
+                                            <div className="divTextCardVanzari">
+                                                <p className="textCardVanzari">{cardsCase[index].descriere} <br></br><br></br>
+                                                    {cardsCase[index].adresa} <br></br><br></br>
+                                                    {cardsCase[index].pret + "$"}
+                                                </p>
+                                            </div>
+                                            <img
+                                                alt="Card cap"
+                                                src={require("../commons/images/" + cardsCase[index].adresa + ".avif")}
+                                                className="imgCardVanzari"
+                                            />
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                                <Col style={{width:"10%", marginTop:"12%"}}>
+                                    <Button className="buttonSearch" type={"submit"} onClick={() => toggleFormViewChart(cardsCase[index].adresa)}>  View Chart </Button>
+                                </Col>
+                            </Row>
                         );
                     })}
                 </Row>
@@ -200,27 +231,32 @@ export default function VanzariContainer() {
                 <Row style={{width:"80%"}}>
                     {Array.from(Array(cardsApartamente.length)).map((item, index) => {
                         return (
-                            <Col sm={{offset: 3}} key={index}>
-                                <Card
-                                    onClick={() => setSelectedFields(cardsApartamente[index].descriere, cardsApartamente[index].adresa, cardsApartamente[index].pret,
-                                        "Apartament")}
-                                    className="cardVanzari ripple"
-                                >
-                                    <CardBody className="cardBodyVanzari">
-                                        <div className="divTextCardVanzari">
-                                            <p className="textCardVanzari">{cardsApartamente[index].descriere} <br></br><br></br>
-                                                {cardsApartamente[index].adresa} <br></br><br></br>
-                                                {cardsApartamente[index].pret + "$"}
-                                            </p>
-                                        </div>
-                                        <img
-                                            alt="Card cap"
-                                            src={require("../commons/images/" + cardsApartamente[index].adresa + ".avif")}
-                                            className="imgCardVanzari"
-                                        />
-                                    </CardBody>
-                                </Card>
-                            </Col>
+                            <Row style={{width:"100%"}}>
+                                <Col sm={{offset: 2}} key={index}>
+                                    <Card
+                                        onClick={() => setSelectedFields(cardsApartamente[index].descriere, cardsApartamente[index].adresa, cardsApartamente[index].pret,
+                                            "Apartament")}
+                                        className="cardVanzari ripple"
+                                    >
+                                        <CardBody className="cardBodyVanzari">
+                                            <div className="divTextCardVanzari">
+                                                <p className="textCardVanzari">{cardsApartamente[index].descriere} <br></br><br></br>
+                                                    {cardsApartamente[index].adresa} <br></br><br></br>
+                                                    {cardsApartamente[index].pret + "$"}
+                                                </p>
+                                            </div>
+                                            <img
+                                                alt="Card cap"
+                                                src={require("../commons/images/" + cardsApartamente[index].adresa + ".avif")}
+                                                className="imgCardVanzari"
+                                            />
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                                <Col style={{width:"10%", marginTop:"12%"}}>
+                                    <Button className="buttonSearch" type={"submit"} onClick={() => toggleFormViewChart(cardsApartamente[index].adresa)}>  View Chart </Button>
+                                </Col>
+                            </Row>
                         );
                     })}
                 </Row>
@@ -237,27 +273,33 @@ export default function VanzariContainer() {
                 <Row style={{width:"80%"}}>
                     {Array.from(Array(cardsGarsoniere.length)).map((item, index) => {
                         return (
-                            <Col sm={{offset: 3}} key={index}>
-                                <Card
-                                    onClick={() => setSelectedFields(cardsGarsoniere[index].descriere, cardsGarsoniere[index].adresa, cardsGarsoniere[index].pret,
-                                    "Garsoniera")}
-                                    className="cardVanzari ripple"
-                                >
-                                    <CardBody className="cardBodyVanzari">
-                                        <div className="divTextCardVanzari">
-                                            <p className="textCardVanzari">{cardsGarsoniere[index].descriere} <br></br><br></br>
-                                                {cardsGarsoniere[index].adresa} <br></br><br></br>
-                                                {cardsGarsoniere[index].pret + "$"}
-                                            </p>
-                                        </div>
-                                        <img
-                                            alt="Card cap"
-                                            src={require("../commons/images/" + cardsGarsoniere[index].adresa + ".avif")}
-                                            className="imgCardVanzari"
-                                        />
-                                    </CardBody>
-                                </Card>
-                            </Col>
+                            <Row style={{width:"100%"}}>
+                                <Col sm={{offset: 2}} key={index}>
+                                    <Card
+                                        onClick={() => setSelectedFields(cardsGarsoniere[index].descriere, cardsGarsoniere[index].adresa, cardsGarsoniere[index].pret,
+                                            "Garsoniera")}
+                                        className="cardVanzari ripple"
+                                    >
+                                        <CardBody className="cardBodyVanzari">
+                                            <div className="divTextCardVanzari">
+                                                <p className="textCardVanzari">{cardsGarsoniere[index].descriere} <br></br><br></br>
+                                                    {cardsGarsoniere[index].adresa} <br></br><br></br>
+                                                    {cardsGarsoniere[index].pret + "$"}
+                                                </p>
+                                            </div>
+                                            <img
+                                                alt="Card cap"
+                                                src={require("../commons/images/" + cardsGarsoniere[index].adresa + ".avif")}
+                                                // src={require( `../commons/images/${cardsGarsoniere[index].adresa}.avif`)}
+                                                className="imgCardVanzari"
+                                            />
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                                <Col style={{width:"10%", marginTop:"12%"}}>
+                                    <Button className="buttonSearch" type={"submit"} onClick={() => toggleFormViewChart(cardsGarsoniere[index].adresa)}>  View Chart </Button>
+                                </Col>
+                            </Row>
                         );
                     })}
                 </Row>
@@ -297,6 +339,15 @@ export default function VanzariContainer() {
                 <ModalHeader style={{backgroundColor: '#496185'}} toggle={toggleFormAddProgramare}> Add Reservation: </ModalHeader>
                 <ModalBody style={{backgroundColor: '#496185'}}>
                     <ProgramariFormAdd reloadHandler={() => reload(4)}/>
+                </ModalBody>
+            </Modal>
+
+            <Modal isOpen={selectedViewChart} toggle={toggleFormViewChart}
+                // className={this.props.className}
+                   size="lg">
+                <ModalHeader style={{backgroundColor: '#496185'}} toggle={toggleFormViewChart}> Reservation Chart for {monthNames[new Date().getMonth()]}: </ModalHeader>
+                <ModalBody style={{backgroundColor: '#496185'}}>
+                    <RezervationChartForm reloadHandler={() => reload(5)}/>
                 </ModalBody>
             </Modal>
         </div>
